@@ -1,3 +1,10 @@
+/*
+3
+123456787654321
+235755557532
+2222333355557777235775327777555533332222
+ */
+
 import java.util.Scanner;
 
 public class b50SoDep3{
@@ -16,19 +23,22 @@ public class b50SoDep3{
     }
 
     public static boolean checkOk(String nStr){
-        for(char c:nStr.toCharArray()){
+        for(char c:nStr.toCharArray()) {
             int digit = c - '0';
-            if(c != '2' && c != '3' && c != '5' && c != '7'){
-                return false; 
-            }
-            int left = 0;
-            int right = nStr.length() - 1;
-            while(left < right){
-                if(nStr.charAt(left) != nStr.charAt(right)){
-                    return false;
-                }
+            if (digit != 2 && digit != 3 && digit != 5 && digit != 7) {
+                return false;
             }
         }
+        int left = 0;
+        int right = nStr.length() - 1;
+        while(left < right){
+            if(nStr.charAt(left) != nStr.charAt(right)){
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
     }
 
 }
