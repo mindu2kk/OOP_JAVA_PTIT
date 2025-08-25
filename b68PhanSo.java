@@ -1,30 +1,29 @@
 import java.util.Scanner;
 
 class PhanSo{
-    private long tuSo;
-    private long mauSo;
+    private long tu;
+    private long mau;
 
-    public PhanSo(long tuSo, long mauSo){
-        this.tuSo = tuSo;
-        this.mauSo = mauSo;
+    public PhanSo(long tu, long mau){
+        this.tu = tu;
+        this.mau = mau;
     }
 
-    private long timUCLN(long a, long b){
-        if(b == 0) return a;
-        return timUCLN(b, a % b);
+    private long gcd(long tu,long mau){
+        if(tu == 0){
+            return mau;
+        }
+        return gcd(mau % tu, tu);
     }
-
     public void rutGon(){
-        long ucln = timUCLN(this.tuSo,this.mauSo);
-        this.tuSo /= ucln;
-        this.mauSo /= ucln;
+        long gcd = gcd(tu,mau);
+        this.tu = tu/gcd;
+        this.mau = mau/gcd;
     }
-
     public String toString(){
-        return this.tuSo + "/" + this.mauSo;
+        return this.tu + "/" + this.mau;
     }
 }
-
 
 
 public class b68PhanSo{
@@ -33,8 +32,9 @@ public class b68PhanSo{
         long tu = sc.nextLong();
         long mau = sc.nextLong();
 
-        PhanSo ps = new PhanSo(tu, mau);
+        PhanSo ps = new PhanSo(tu,mau);
         ps.rutGon();
+
         System.out.println(ps);
         sc.close();
     }
